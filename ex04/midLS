@@ -1,0 +1,20 @@
+ls -lt --ignore=".*" --format=single-column | grep -v "/\." | awk '{print $0 ","}' | tr '\n' ' ' | sed 's/ ,$/,/'
+
+# Explanation:
+# ls -lt:
+# Lists the files and directories sorted by modification date (most recent first).
+# The -l flag provides detailed information (including file types, permissions, and timestamps).
+# --ignore=".*":
+# Ignores hidden files (files that begin with a dot).
+# --format=single-column:
+# Displays the list in a single column format.
+# grep -v "/\.":
+# Removes entries that start with a dot in the directory structure.
+# awk '{print $0 ","}':
+# Appends a comma to each entry.
+# tr '\n' ' ':
+# Replaces newline characters with spaces.
+# sed 's/ ,$/,/':
+# Replaces the final space-comma combination with just a comma at the end.
+# The command results in a single line listing all files and directories (except hidden ones), sorted by modification date,
+#  with directories followed by a slash, and entries separated by commas.

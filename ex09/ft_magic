@@ -1,0 +1,29 @@
+dd if="$1" bs=42 skip=1 count=1 2>/dev/null | od -An -tx1 | grep -q '42' && echo "Magic found!" || echo "No magic"
+
+# In simple terms:
+# The command reads the 42nd byte of the file.
+# It checks if that byte is 42 (the "magic" number).
+# If it is, it says "Magic found!". If not, it says "No magic".
+
+# dd if="$1" bs=42 skip=1 count=1 2>/dev/null:
+
+# dd is a command that copies and converts data from a file.
+# if="$1": This means the command is looking at the file you give it when you run the script ($1 is the first argument, the file name).
+# bs=42: This sets the "block size" to 42 bytes, meaning it processes data in chunks of 42 bytes.
+# skip=1: This skips the first 41 bytes in the file, so we’re looking at the 42nd byte.
+# count=1: This tells dd to only look at 1 byte (the 42nd byte).
+# 2>/dev/null: This part makes sure any errors (like if the file is smaller than 42 bytes) don't show up on your screen.
+# od -An -tx1:
+
+# od stands for "octal dump", but it can also show data in hexadecimal format.
+# -An: This option removes extra info like line numbers from the output.
+# -tx1: This tells od to print the data in hexadecimal format, showing one byte at a time.
+# grep -q '42':
+
+# grep is used to search through text.
+# -q: This makes grep quiet, meaning it won't show anything, just return true or false.
+# '42': It’s looking for the hexadecimal value 42 (which is the number 42 in hex) in the output from od. This is the "magic" we're checking for.
+# && echo "Magic found!" || echo "No magic":
+
+# If grep finds the "42" in the 42nd byte, it prints Magic found!.
+# If it doesn't find "42", it prints No magic.

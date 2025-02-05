@@ -1,0 +1,8 @@
+find . -type f \( -name '*~' -o -name '#*#' \) -exec rm -f {} +
+
+
+# find .: Starts the search from the current directory (represented by .).
+# -type f: Restricts the search to files only (not directories).
+# \( -name '*~' -o -name '#*#' \): This finds files that either end with ~ (-name '*~') or start and end with # (-name '#*#').
+#-exec rm -f {} +: For each file found, it runs the rm -f command to forcefully remove the file without prompting.
+# The command finds and deletes files in the current directory and subdirectories that end with `~` or start and end with `#`.
